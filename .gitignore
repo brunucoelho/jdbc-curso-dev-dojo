@@ -1,0 +1,12 @@
+# Compilation outputs / Maven target
+target/
+*.class
+
+# IntelliJ IDEA project files
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+untitled/

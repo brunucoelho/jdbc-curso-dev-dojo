@@ -8,8 +8,12 @@
   <groupId>com.maratonajava.jdbc</groupId>
   <artifactId>jdbc-curso-dev-dojo</artifactId>
   <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>untitled</module>
+    </modules>
 
-  <properties>
+    <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
