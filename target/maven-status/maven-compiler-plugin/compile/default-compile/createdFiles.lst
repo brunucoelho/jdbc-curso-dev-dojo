@@ -1,2 +1,6 @@
-com\maratonajava\jdbc\test\ConnectionFactoryTest.class
+com\maratonajava\jdbc\dominio\Producer.class
+com\maratonajava\jdbc\service\ProducerService.class
+com\maratonajava\jdbc\dominio\Producer$ProducerBuilder.class
+com\maratonajava\jdbc\repository\ProducerRepository.class
 com\maratonajava\jdbc\conn\ConnectionFactory.class
+com\maratonajava\jdbc\test\ConnectionFactoryTest.class
