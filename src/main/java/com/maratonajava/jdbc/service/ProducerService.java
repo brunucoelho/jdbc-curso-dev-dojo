@@ -23,6 +23,11 @@ public class ProducerService {
         ProducerRepository.update(producer);
     }
 
+    public static void updatePreparedStatemets(Producer producer){
+        requireValidId(producer.getId());
+        ProducerRepository.updatePreparedStatemets(producer);
+    }
+
     public static List<Producer> findAll(){
 
         return ProducerRepository.findAll();
@@ -41,6 +46,35 @@ public class ProducerService {
     public static void showDriveMetadata(){
 
         ProducerRepository.showDriveMetaData();
+    }
+
+    public static void showTypeScrollWorking() {
+        ProducerRepository.showTypeScrollWorking();
+    }
+
+    public static List<Producer> findByNameAndUpdateToUpperCase(String name){
+
+        return ProducerRepository.findByNameAndUpdateToUpperCase(name);
+    }
+
+    public static List<Producer> findByNameAndInsertWhenNotFound(String name){
+
+        return ProducerRepository.findByNameAndInsertWhenNotFound(name);
+    }
+
+    public static void findByNameAndDelete(String name){
+
+        ProducerRepository.findByNameAndDelete(name);
+    }
+
+    public static List<Producer> findByNamePreparedStatement(String name){
+
+        return ProducerRepository.findByNamePreparedStatement(name);
+    }
+
+    public static List<Producer> findByNameCallableStataments(String name){
+
+        return ProducerRepository.findByNameCallableStataments(name);
     }
 
     private static void requireValidId(Integer id) {

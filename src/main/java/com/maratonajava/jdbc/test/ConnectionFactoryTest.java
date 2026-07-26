@@ -17,9 +17,20 @@ public class ConnectionFactoryTest {
 //    ProducerRepository.delete(9);
 //    ProducerRepository.update(producerToUpdate);
 //      List<Producer> producers = ProducerService.findAll();
-//      log.info("Producers found {}", producers);
 //    ProducerService.showProducerMetadata();
-    ProducerService.showDriveMetadata();
+//      log.info("Producers found {}", producers);
+//    ProducerService.showDriveMetadata();
+//      ProducerService.showTypeScrollWorking();
+//    List<Producer> deen = ProducerService.findByNameAndUpdateToUpperCase("Deen");
+//    List<Producer> bones = ProducerService.findByNameAndInsertWhenNotFound("A-1 Pictures");
+//    ProducerService.findByNameAndDelete("A-1 Pictures");
+//    log.info("Producers found {}", bones);
+//    List<Producer> producerList = ProducerService.findByNamePreparedStatement("Bon");
+//    log.info("Producers found {}", producerList);
+//    ProducerService.updatePreparedStatemets(producerToUpdate);
+
+    List<Producer> producerList = ProducerService.findByNameCallableStataments("sasa");
+    log.info("Producers found {}", producerList);
   }
   
 }
