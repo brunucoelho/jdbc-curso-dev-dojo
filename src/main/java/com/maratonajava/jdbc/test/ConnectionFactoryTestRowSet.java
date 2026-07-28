@@ -11,9 +11,10 @@ import java.util.List;
 public class ConnectionFactoryTestRowSet {
     public static void main(String[] args) {
 
-        Producer producerToUpdate = Producer.builder().id(1).name("MadHouse").build();
-        ProducerServiceRowSet.updateJdbcRowSet(producerToUpdate);
-        List<Producer> producers = ProducerServiceRowSet.findByNameJdbcRowSet("");
-        log.info("producers: " + producers);
+        Producer producerToUpdate = Producer.builder().id(1).name("MAD HOUSE").build();
+        ProducerServiceRowSet.updateCachedRowSet(producerToUpdate);
+        log.info("------------------------");
+//        List<Producer> producers = ProducerServiceRowSet.findByNameJdbcRowSet("");
+//        log.info("producers: " + producers);
     }
 }
