@@ -83,11 +83,13 @@ src/main/java/com/maratonajava/crud/
 │   ├── Producer.java                   # entidade (Lombok @Value + @Builder)
 │   └── Anime.java                      # entidade (Lombok @Value + @Builder), referencia um Producer
 ├── repository/
-│   └── ProducerRespository.java        # busca de producer via PreparedStatement
+│   ├── ProducerRespository.java        # CRUD completo de Producer via PreparedStatement
+│   └── AnimeRespository.java           # CRUD completo de Anime via PreparedStatement (join com Producer)
 ├── service/
-│   └── ProducerService.java            # regras de negócio + orquestração do menu de console
+│   ├── ProducerService.java            # regras de negócio + orquestração do menu de Producer
+│   └── AnimeService.java               # regras de negócio + orquestração do menu de Anime
 └── test/
-    └── CrudTest.java                   # classe main com o menu interativo (CLI)
+    └── CrudTest.java                   # classe main com o menu interativo (CLI), com submenus Producer/Anime
 
 src/main/resources/
 └── log4j2.xml                          # configuração de logging
@@ -106,6 +108,12 @@ Se a conexão for bem-sucedida, o console imprime algo como:
 
 ```
 com.mysql.cj.jdbc.ConnectionImpl@d21a74c
+```
+
+Para rodar a aplicação CRUD de console (módulo `crud`):
+
+```bash
+mvn compile exec:java -Dexec.mainClass="com.maratonajava.crud.test.CrudTest"
 ```
 
 ## Funcionalidades implementadas
@@ -135,12 +143,13 @@ com.mysql.cj.jdbc.ConnectionImpl@d21a74c
 
 ### Módulo `crud` (aplicação de console)
 
-Início de uma aplicação CRUD orientada a menu de texto, reaproveitando os conceitos estudados no módulo `jdbc`:
+Aplicação CRUD completa orientada a menu de texto, reaproveitando os conceitos estudados no módulo `jdbc`:
 
-- `CrudTest`: loop principal que lê a opção do usuário via `Scanner` e delega para o `ProducerService`.
-- `ProducerService.buildMenu`: roteia a opção escolhida (por enquanto, apenas `1` — buscar producer por nome) e imprime o resultado no console.
-- `ProducerRespository.findByName`: busca via `PreparedStatement`, retornando `List<Producer>`.
-- Entidade `Anime` criada (`id`, `name`, `episodes`, `producer`) como preparação para o próximo passo: CRUD de `Anime` relacionado ao `Producer`.
+- `CrudTest`: loop principal que lê a opção do usuário via `Scanner` e navega por um menu com submenus — `1` para `Producer`, `2` para `Anime`, `0` para sair; cada submenu tem `9` para voltar.
+- `ProducerService` / `AnimeService`: roteiam a opção escolhida em cada submenu (`findByName`, `delete`, `save`, `update`) e orquestram a interação via console.
+- `ProducerRespository`: CRUD completo de `Producer` via `PreparedStatement` (`findByName`, `findById`, `save`, `uptade`, `delete`).
+- `AnimeRespository`: CRUD completo de `Anime` via `PreparedStatement`, com `findByName`/`findById` fazendo `INNER JOIN` com `producer` para trazer o nome do produtor relacionado.
+- Entidade `Anime` (`id`, `name`, `episodes`, `producer`) relacionada a um `Producer`, refletindo a FK do banco.
 
 ## Roadmap do estudo
 
@@ -154,8 +163,8 @@ Início de uma aplicação CRUD orientada a menu de texto, reaproveitando os con
 - [x] `RowSetListener` para reagir a eventos de um `RowSet`
 - [x] Transações (`commit`/`rollback`) em operações com múltiplos registros
 - [x] Logging estruturado com Log4j2 e Lombok (`@Log4j2`, `@Value`, `@Builder`)
-- [x] Início do módulo `crud`: aplicação de console com menu (busca de `Producer` por nome)
-- [ ] CRUD completo de `Producer` no módulo `crud` (insert/update/delete via menu)
-- [ ] DAO/CRUD de `Anime` (join com `Producer`)
+- [x] Módulo `crud`: aplicação de console com menu (submenus `Producer` / `Anime`)
+- [x] CRUD completo de `Producer` no módulo `crud` (insert/update/delete via menu)
+- [x] CRUD completo de `Anime` no módulo `crud` (join com `Producer` via menu)
 - [ ] Tratamento de exceções customizado (camada de exception)
 - [ ] Pool de conexões (ex: HikariCP)
