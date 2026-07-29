@@ -1,4 +1,4 @@
-# JDBC Curso Dev Dojo
+# Projeto do uso de JDBC e CRUD
 
 Projeto de estudo de **JDBC puro** (sem ORM), conectando uma aplicação Java a um banco MySQL rodando em Docker. Objetivo: praticar conexão, CRUD e mapeamento manual objeto-relacional como base antes de avançar para frameworks como Spring Data / JPA.
 
